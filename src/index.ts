@@ -1,5 +1,5 @@
 import express from "express";
-
+import cors from "cors";
 import authRouter from "./routes/auth/auth.routes";
 import productRouter from "./routes/produk/produk.routes";
 import karyawanRoutes from "./routes/karyawan/karyawan.routes";
@@ -9,6 +9,7 @@ import petsRoutes from "./routes/pets/pets.routes";
 const app = express();
 const PORT = 5000;
 
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1/auth", authRouter);
