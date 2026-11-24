@@ -76,8 +76,6 @@ class BookingGrooming {
           layanan: Number(layanan),
           totalPrice: service.price,
           bookingDate: date,
-          pickup,
-          address: pickup === "jemput_pet" ? address : null,
           notes: notes || null,
         })
         .returning();
@@ -111,8 +109,6 @@ class BookingGrooming {
           layanan: bookingsTable.layanan,
           totalPrice: bookingsTable.totalPrice,
           bookingDate: bookingsTable.bookingDate,
-          pickup: bookingsTable.pickup,
-          address: bookingsTable.address,
           notes: bookingsTable.notes,
           status: bookingsTable.status,
           employeeId: bookingsTable.employeeId,
@@ -218,8 +214,6 @@ class BookingGrooming {
           serviceName: groomingServicesTable.name,
           totalPrice: bookingsTable.totalPrice,
           bookingDate: bookingsTable.bookingDate,
-          pickup: bookingsTable.pickup,
-          address: bookingsTable.address,
           notes: bookingsTable.notes,
           status: bookingsTable.status,
           employeeId: bookingsTable.employeeId,
@@ -249,7 +243,7 @@ class BookingGrooming {
     }
   };
 
-  // CONFIRM BOOKING ()
+  // CONFIRM BOOKING 
   confirmBooking = async (req: Request, res: Response) => {
     try {
       const bookingId = Number(req.params.id);
@@ -305,7 +299,7 @@ class BookingGrooming {
     }
   };
 
-  // ASSIGN EMPLOYEE (ADMIN)
+  // ASSIGN EMPLOYEE 
   assignEmployee = async (req: Request, res: Response) => {
     try {
       const bookingId = Number(req.params.id);
@@ -353,7 +347,7 @@ class BookingGrooming {
         .where(eq(usersTable.id, Number(employeeId)))
         .limit(1);
 
-      if (!employee || employee.roleName !== "Karyawan") {
+      if (!employee || employee.roleName !== "karyawan") {
         return res.status(404).json({
           success: false,
           message: "Akun karyawan tidak ditemukan",
