@@ -1,10 +1,12 @@
 import express from "express";
 import cors from "cors";
+
 import authRouter from "./routes/auth/auth.routes";
 import productRouter from "./routes/produk/produk.routes";
 import karyawanRoutes from "./routes/karyawan/karyawan.routes";
 import groomingRoutes from "./routes/grooming/grooming.routes";
 import petsRoutes from "./routes/pets/pets.routes";
+import bookingRoutes from "./routes/booking/booking.routes";
 
 const app = express();
 const PORT = 5000;
@@ -17,6 +19,7 @@ app.use("/api/v1/products", productRouter);
 app.use("/api/v1/karyawan", karyawanRoutes);
 app.use("/api/v1/grooming", groomingRoutes);
 app.use("/api/v1/pets", petsRoutes);
+app.use("/api/v1/booking", bookingRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
