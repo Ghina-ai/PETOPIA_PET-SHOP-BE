@@ -2,10 +2,7 @@ import { Request, Response } from "express";
 import { eq } from "drizzle-orm";
 import { db } from "../../config/db";
 import { groomingServicesTable } from "../../config/schema";
-import {
-  createGroomingSchema,
-  updateGroomingSchema,
-} from "../../validation/grooming.validation";
+import { createGroomingSchema, updateGroomingSchema } from "../../validation/grooming.validation";
 import { uploadToCloudinary } from "../../services/cloudinary.services";
 
 type RequestWithFile = Request & {

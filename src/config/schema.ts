@@ -100,18 +100,15 @@ export const BOOKING_STATUS = [
   "cancelled",
 ] as const;
 export const bookingStatusEnum = pgEnum("booking_status", BOOKING_STATUS);
-export const PICKUP_METHOD = ["antar_sendiri", "jemput_pet"] as const;
-export const pickupMethodEnum = pgEnum("pickup_method", PICKUP_METHOD);
 
 export const bookingsTable = pgTable("bookings", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").notNull().references(() => usersTable.id, { onDelete: "cascade" }),
+  employeeId: integer("employee_id").references(() => usersTable.id),
   petId: integer("pet_id").notNull().references(() => petsTable.id),
   layanan: integer("service_id").notNull().references(() => groomingServicesTable.id),
   totalPrice: numeric("total_price", { precision: 12, scale: 2 }).notNull(),
   bookingDate: timestamp("booking_date").notNull(),
-  pickup: pickupMethodEnum("pickup_method").notNull(),
-  address: text("address"),
   notes: text("notes"),
   status: bookingStatusEnum("status").notNull().default("pending"),
   createdAt: timestamp("created_at").defaultNow(),
